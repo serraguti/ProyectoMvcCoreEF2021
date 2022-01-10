@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProyectoMvcCoreEF.Data;
 using ProyectoMvcCoreEF.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,21 @@ namespace ProyectoMvcCoreEF
 
         public void ConfigureServices(IServiceCollection services)
         {
+            String cadenaMySQL =
+                this.Configuration.GetConnectionString("cadenahospitalmysql");
+            DepartamentosContextMySql contextMySql =
+                new DepartamentosContextMySql(cadenaMySQL);
+            services.AddTransient<IDepartamentosContext>
+                (x => contextMySql);
+            //String cadenaSqlServer =
+            //    this.Configuration.GetConnectionString("cadenahospitalsql");
+            //DepartamentosContextSQLServer contextSQL =
+            //    new DepartamentosContextSQLServer(cadenaSqlServer);
+            //services.AddTransient<IDepartamentosContext>
+            //    (z => contextSQL);
+
+
+
             //DEBEMOS RESOLVER LAS DEPENDENCIAS ANTES DE 
             //CARGAR LOS CONTROLADORES EN LOS SERVICIOS
             //services.AddSingleton<ICoche, Deportivo>();

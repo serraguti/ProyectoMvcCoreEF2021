@@ -8,7 +8,7 @@ using ProyectoMvcCoreEF.Models;
 
 namespace ProyectoMvcCoreEF.Data
 {
-    public class DepartamentosContextSQLServer
+    public class DepartamentosContextSQLServer: IDepartamentosContext
     {
         private DataTable tabla;
         private SqlDataAdapter addept;
